@@ -38,6 +38,7 @@ app.post('/', (req, res) => {
     const request = https.request(url, options, (response)=>{
         response.on('data', (data)=>{
             console.log(JSON.parse(data));
+            res.setHeader('Content-Type', 'text/html');
             if(response.statusCode==200)
                 res.sendFile(__dirname+'/success.html')
             else
@@ -57,7 +58,7 @@ app.post('/failure', (req, res)=>{
 
 
 app.listen(process.env.PORT||3000, () => {
-    console.log("Server Started at port 3000");
+    console.log("Server Started at port "+process.env.PORT);
 })
 
 // 1362e87885
